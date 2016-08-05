@@ -3,7 +3,7 @@
 function drawBottomRectangle () {
   d3.select('svg')
     .append("rect")
-      .attr("fill", 'blue')
+      .attr("fill", '#16161d')
       .attr("x", "0.25in")
       .attr("y", "1in")
       .attr("width", "100%")
@@ -33,14 +33,15 @@ function addName (content) {
       .style("text-transform", "uppercase")
       .style("letter-spacing", "-5px")
       .attr("font-size", "95")
-      .attr("fill", "#5EB5E2");
+      .attr("fill", "#16161d");
+      // .attr("fill", "#5EB5E2");
 }
 
 function createSVG () {
   d3.select("body")
     .append("svg")
     .attr("height", '2in')
-    .style("background", 'red')
+    .style("background", '#fff')
 }
 
 
