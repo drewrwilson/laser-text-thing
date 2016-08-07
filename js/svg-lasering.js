@@ -46,7 +46,6 @@ function addText (content) {
       .style('letter-spacing', '-5px')
       .attr('font-size', '95')
       .attr('fill', '#16161d');
-      // .attr('fill', '#5EB5E2');
   if (content == '') {
     addText('Enter Text');
   }
@@ -60,11 +59,7 @@ function createSVG () {
 
 function draw(content) {
   //write text to svg
-
   addText(content);
-
-  // var svg-laser-text = d3.select("text[id='svg-laser-text']");
-  // svg-laser-text.parentNode.removeChild(svg-laser-text);
 
   //resize to correct width
   resizeToTwoInchesTall();
@@ -80,6 +75,8 @@ d3.select("#design-text").on("input", function() {
 
 });
 
+
+//TODO:
 //union of paths
 //remove fill, add stroke
 //bonus points:
