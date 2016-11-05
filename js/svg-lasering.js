@@ -9,35 +9,41 @@ function show_svg(evt) {
 }
 
 function drawBottomRectangle () {
+  d3.selectAll('rect')
+    .remove();
   d3.select('svg')
     .append("rect")
       .attr("fill", '#16161d')
       .attr("x", "0.25in")
       .attr("y", ".99in")
-      .attr("width", "100%")
-      .attr("height", ".10in")
+      .attr("width", function () {
+        return d3.select('#svg-laser-text').attr('width')
+      })
+      .attr("height", ".20in")
 
 }
 
 function resizeToTwoInchesTall () {
   d3.select('svg')
-    .attr('id', 'yo')
     .each(function() {
         bbox = this.getBBox();
         this.setAttribute('viewBox', bbox.x  + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height)
-            // this.setAttribute('height', bbox.height)
-        // this.setAttribute('height', '2in')
+        this.setAttribute('height', bbox.height)
+        this.setAttribute('height', '1in')
         this.setAttribute('viewBox', bbox.x  + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height)
       });
 };
 
 function addText (content) {
-  d3.selectAll('.svg-laser-text')
+  d3.select('#laser-words')
+    .remove();
+  createSVG();
+  d3.select('#svg-laser-text')
     .remove();
   d3.select('svg')
     .append('text')
       .attr('x', '0.25in')
-      .attr('class', 'svg-laser-text')
+      .attr('id', 'svg-laser-text')
       .attr('y', '1in')
       .text(content)
       .attr('font-family', "font-family: 'Open Sans', sans-serif;")
@@ -45,26 +51,34 @@ function addText (content) {
       .style('text-transform', 'uppercase')
       .style('letter-spacing', '-5px')
       .attr('font-size', '95')
-      .attr('fill', '#16161d');
+      .attr('fill', '#16161d')
+      .attr('width', function () {
+        return this.getBBox().width;
+      });
   if (content == '') {
     addText('Enter Text');
   }
 }
 
 function createSVG () {
-  d3.select('svg')
-    // .attr('height', '2in')
-    .style('background', '#fff')
+  d3.select('#where-the-svg-goes')
+    .append('svg')
+    .attr('id', 'laser-words')
+    .style('background', '#fff');
 }
 
 function draw(content) {
   //write text to svg
   addText(content);
 
-  //resize to correct width
-  resizeToTwoInchesTall();
   //add an underline
   drawBottomRectangle();
+
+
+  //resize to correct width
+  resizeToTwoInchesTall();
+
+
 }
 
 //create an svg
