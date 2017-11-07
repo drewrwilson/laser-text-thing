@@ -1,4 +1,4 @@
-var Inkscape = require('inkscape'),
+var //Inkscape = require('inkscape'),
     http = require('http'),
     pathModule = require('path');
 //
@@ -17,9 +17,9 @@ http.createServer(function (req, res) {
           '--verb=FileQuit'
         ])).pipe(res);
 
-        res.end('Got it!');
+        //res.end('Got it!');
     } else {
         res.writeHead(400);
         res.end('Feed me an SVG!');
     }
-}).listen(1337);
+}).listen(80);
