@@ -1,7 +1,7 @@
 var Inkscape = require('inkscape'),
     http = require('http'),
     pathModule = require('path');
-
+//
 
 http.createServer(function (req, res) {
     if (req.headers['content-type'] === 'image/svg+xml') {
