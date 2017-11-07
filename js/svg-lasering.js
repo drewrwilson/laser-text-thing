@@ -5,6 +5,7 @@ function show_svg(evt) {
                             {'type': "image/svg+xml"});
     var url = URL.createObjectURL(svg_blob);
 
+
     var svg_win = window.open(url, "svg_win");
 }
 
@@ -20,7 +21,6 @@ function drawBottomRectangle () {
         return d3.select('#svg-laser-text').attr('width')
       })
       .attr("height", ".20in")
-
 }
 
 function resizeToTwoInchesTall () {
@@ -36,8 +36,12 @@ function resizeToTwoInchesTall () {
 
 function addText (content) {
   d3.select('#laser-words')
-    .remove();
-  createSVG();
+      .selectAll('text')
+      .remove();
+  d3.select('#laser-words')
+      .selectAll('rect')
+      .remove();
+
   d3.select('#svg-laser-text')
     .remove();
   d3.select('svg')
@@ -46,8 +50,7 @@ function addText (content) {
       .attr('id', 'svg-laser-text')
       .attr('y', '1in')
       .text(content)
-      .attr('font-family', "font-family: 'Open Sans', sans-serif;")
-      .attr('font-weight', '800')
+      .attr('font-family', "Open Sans")
       .style('text-transform', 'uppercase')
       .style('letter-spacing', '-5px')
       .attr('font-size', '95')
@@ -60,11 +63,17 @@ function addText (content) {
   }
 }
 
-function createSVG () {
-  d3.select('#where-the-svg-goes')
-    .append('svg')
-    .attr('id', 'laser-words')
-    .style('background', '#fff');
+function addDownloadLink () {
+
+    var html = d3.select("svg")
+        .attr("version", 1.1)
+        .attr("xmlns", "http://www.w3.org/2000/svg")
+        .node().parentNode.innerHTML;
+
+    d3.select("#downloadbutton")
+        .attr("title", "laser-name.svg")
+        .attr("href-lang", "image/svg+xml")
+        .attr("href", "data:image/svg+xml;base64,\n" + btoa(html))
 }
 
 function draw(content) {
@@ -78,16 +87,20 @@ function draw(content) {
   //resize to correct width
   resizeToTwoInchesTall();
 
+  addDownloadLink();
+
 
 }
 
-//create an svg
-createSVG();
+
+
 draw('Hello World');
 d3.select("#design-text").on("input", function() {
   draw(this.value)
 
 });
+
+
 
 
 //TODO:

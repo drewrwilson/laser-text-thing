@@ -1,1 +1,0 @@
-inkscape -f uhhh.svg --verb=EditDeselect --verb EditSelectAll --verb=SelectionUnion --verb=FileSave --verb=FileClose
