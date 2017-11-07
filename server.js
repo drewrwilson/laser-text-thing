@@ -19,4 +19,4 @@ http.createServer(function (req, res) {
         res.writeHead(400);
         res.end('Feed me an SVG!');
     }
-}).listen(1337);
+}).listen(80);

@@ -1,0 +1,6 @@
+{
+  "name": "Laser Words",
+  "description": "A tool for creating laser cuttable words",
+  "repository": "https://github.com/drewrwilson/laser-words",
+  "keywords": ["node", "express", "heroku"]
+}
