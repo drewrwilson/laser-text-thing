@@ -1,4 +1,4 @@
-var //Inkscape = require('inkscape'),
+var Inkscape = require('inkscape'),
     http = require('http'),
     pathModule = require('path');
 //
